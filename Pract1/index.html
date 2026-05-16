@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- A11Y: немає мови — погано для скрінрідера -->
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Олена Петренко — портфоліо</title>
+  <meta name="description" content="Олена Петренко — портфоліо">
+  <style>
+    body {
+      font-family: Georgia, serif;
+      max-width: 760px;
+      margin: 2rem auto;
+      padding: 1rem;
+      line-height: 1.5;
+    }
+    .btn {
+      background: #2050a0;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      display: inline-block;
+      cursor: pointer;
+      margin: 4px 0;
+    }
+    .status-error { color: #d22; }
+    .status-ok { color: #2a8; }
+    .avatar { width: 160px; height: 160px; border-radius: 50%; }
+    a { color: #2050a0; }
+    h2 { border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Привіт, мене звати Олена</h1>
+
+  <p>Я студентка 1-го курсу ІПЗ у НаУКМА. Тут — мої проєкти і контакти.</p>
+
+  <!-- A11Y: немає alt — погана accesibility -->
+  <img class="avatar" src="me.jpg" alt="my-avatar">
+
+  <h2>Освіта</h2>
+  
+  <!-- A11Y: br замість ul/li — погано для скрінрідера і для семантики, виправлено -->
+  <ul>
+  <li>НаУКМА, бакалавр ІПЗ</li>
+  <li>Спеціалізація: веб-розробка</li>
+  <li>Рік випуску: 2027</li>
+  <li>Середній бал: 4.7</li>
+  </ul>
+
+  <!-- A11Y: купа помилок з заголовками і абзацами — погана accesibility -->
+  <h2>Проєкти</h2>
+
+  <h3>Інтернет-магазин випічки</h3>
+
+  <p>Платформа для замовлення домашньої випічки з доставкою.</p>
+
+  <!-- A11Y: не список і тільки колір — погана accesibiity зроблено списком додано іконки -->
+  <p>Статус:</p>
+  <ul>
+  <li class="status-error" style="color:blue">Проблеми з оплатою❌</li>
+  <li>Доставка працює✅</li>
+  </ul>
+
+  <!-- A11Y: br замість ul/li — погано для скрінрідера і для семантики, виправлено -->
+  <p>Технології:</p>
+  <ul>
+  <li>React</li>
+  <li>Node.js</li>
+  <li>TypeScript</li>
+  <li>PostgreSQL</li>
+  </ul>
+
+  <h3>Календар університетських подій</h3>
+
+  <p>Веб-застосунок для слідкування за подіями факультету. Інтегрований з Google Calendar.</p>
+
+  <!-- A11Y: немає alt — погана accesibility -->
+  <img src="calendar-screenshot.png" alt="calendar">
+
+  <h2>Контакти</h2>
+
+  <p>Зв'яжіться зі мною:</p>
+
+  <!-- A11Y: <a> без href, з onclick — погана семантика -->
+  <a href="mailto:olena@ukma.edu.ua">Написати email</a>
+  <!-- A11Y: <div onclick> як «кнопка» — погана семантика -->
+  <a href="tel:+380670010001">Зателефонувати</a>
+
+  <h2>Підписка на новини</h2>
+
+  <p>Залиште email і отримуйте щотижневі оновлення про мої проєкти:</p>
+
+  <!-- A11Y: простий плейсхолддер замість форми — погана accesibility і семантика -->
+  <form action="" method="POST">
+  <label for="email">Ваш email</label>
+  <input type="email" name="email" id="email" required>
+  <!-- A11Y: батон без тайп — непрацюватиме -->
+  <button type="submit">Підписатися</button>
+  </form>
+
+  <h2>Соцмережі</h2>
+
+  <p>
+    <a href="https://github.com/olenapetrenko" target="_blank">GitHub</a>
+    &middot;
+    <a href="https://linkedin.com/in/olenapetrenko" target="_blank">LinkedIn</a>
+    &middot;
+    <a href="https://twitter.com/olenap" target="_blank">Twitter</a>
+  </p>
+
+  <hr>
+  <!-- A11Y: колір поганий — погана accesibility -->
+  <p style="text-align: center;">&copy; 2026 Олена Петренко</p>
+
+</body>
+</html>
