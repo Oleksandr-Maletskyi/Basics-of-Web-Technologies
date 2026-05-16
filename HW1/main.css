@@ -260,3 +260,37 @@ body {
         display: none;
     }
 }
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 130%;
+    left: 50%;
+
+    background-color: #7b1fa2; 
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 12px;
+    white-space: nowrap;
+    font-weight: normal;
+    z-index: 1000;
+    pointer-events: none;
+
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: bottom center;
+    transform: translateX(-50%) scale(0.4);
+
+    transition: all 0.3s ease; 
+}
+
+[data-tooltip]:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) scale(1);
+}
