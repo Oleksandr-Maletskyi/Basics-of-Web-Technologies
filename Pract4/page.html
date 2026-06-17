@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Task 4 — Аккордеон</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; max-width: 720px; margin: 2rem auto; padding: 1rem; line-height: 1.5; }
+    h1 { color: #2050a0; }
+    .accordion { border-top: 1px solid #ddd; }
+    .panel { border-bottom: 1px solid #ddd; }
+    .panel-title {
+      padding: 1rem 0;
+      cursor: pointer;
+      font-weight: bold;
+      color: #1a1a1a;
+      position: relative;
+      padding-right: 2rem;
+    }
+    .panel-title:focus { outline: 2px solid #2050a0; outline-offset: 2px; }
+    .panel-title::after {
+      content: "+";
+      position: absolute;
+      right: 0; top: 1rem;
+      transition: transform 0.2s;
+    }
+    .panel.open .panel-title::after {
+      content: "−";
+    }
+    .panel-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      color: #555;
+    }
+    .panel.open .panel-content {
+      max-height: 300px;
+      padding-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>FAQ</h1>
+
+  <div class="accordion">
+
+    <article class="panel">
+      <h3 class="panel-title" tabindex="0" aria-expanded="false">Що таке HTML?</h3>
+      <div class="panel-content">
+        <p>HyperText Markup Language — мова розмітки гіпертексту. Описує структуру веб-сторінки.</p>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h3 class="panel-title" tabindex="0" aria-expanded="false">Чим CSS відрізняється від HTML?</h3>
+      <div class="panel-content">
+        <p>HTML — про структуру. CSS — про оформлення. JavaScript — про поведінку.</p>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h3 class="panel-title" tabindex="0" aria-expanded="false">Чому JavaScript — це не Java?</h3>
+      <div class="panel-content">
+        <p>Це історична плутанина 1995 року. Це різні мови, спільне лише ім'я.</p>
+      </div>
+    </article>
+
+    <article class="panel">
+      <h3 class="panel-title" tabindex="0" aria-expanded="false">Що таке DOM?</h3>
+      <div class="panel-content">
+        <p>Document Object Model — програмне представлення HTML як дерева об'єктів. Через нього JavaScript бачить і змінює сторінку.</p>
+      </div>
+    </article>
+
+  </div>
+
+  <script src="accordion.js"></script>
+</body>
+</html>
