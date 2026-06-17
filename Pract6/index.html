@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Бюджет родини - WebDataRocks</title>
+    
+    <link href="https://cdn.webdatarocks.com/latest/webdatarocks.min.css" rel="stylesheet"/>
+    <script src="https://cdn.webdatarocks.com/latest/webdatarocks.toolbar.min.js"></script>
+    <script src="https://cdn.webdatarocks.com/latest/webdatarocks.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2>Бюджет родини (Січень - Червень)</h2>
+
+    <div class="header-panel">
+        <div class="total-counter" id="totalCounter">Загальні витрати: 0 грн</div>
+        <button class="export-btn" id="exportBtn">Експорт у HTML</button>
+    </div>
+
+    <div id="wdr-component"></div>
+
+    <script>
+        // 1. Дані — у JS-масиві { category, month, amount }
+        const familyBudget = [
+            { category: "Оренда", month: "01. Січень", amount: 15000 },
+            { category: "Продукти", month: "01. Січень", amount: 8500 },
+            { category: "Транспорт", month: "01. Січень", amount: 1200 },
+            { category: "Комуналка", month: "01. Січень", amount: 3500 },
+            { category: "Розваги", month: "01. Січень", amount: 2000 },
+            
+            { category: "Оренда", month: "02. Лютий", amount: 15000 },
+            { category: "Продукти", month: "02. Лютий", amount: 9000 },
+            { category: "Транспорт", month: "02. Лютий", amount: 1100 },
+            { category: "Комуналка", month: "02. Лютий", amount: 3400 },
+            { category: "Розваги", month: "02. Лютий", amount: 1500 },
+
+            { category: "Оренда", month: "03. Березень", amount: 15000 },
+            { category: "Продукти", month: "03. Березень", amount: 8800 },
+            { category: "Транспорт", month: "03. Березень", amount: 1300 },
+            { category: "Комуналка", month: "03. Березень", amount: 3200 },
+            { category: "Розваги", month: "03. Березень", amount: 2500 },
+
+            { category: "Оренда", month: "04. Квітень", amount: 15000 },
+            { category: "Продукти", month: "04. Квітень", amount: 9200 },
+            { category: "Транспорт", month: "04. Квітень", amount: 1400 },
+            { category: "Комуналка", month: "04. Квітень", amount: 2800 },
+            { category: "Розваги", month: "04. Квітень", amount: 3000 },
+
+            { category: "Оренда", month: "05. Травень", amount: 15000 },
+            { category: "Продукти", month: "05. Травень", amount: 8900 },
+            { category: "Транспорт", month: "05. Травень", amount: 1500 },
+            { category: "Комуналка", month: "05. Травень", amount: 2500 },
+            { category: "Розваги", month: "05. Травень", amount: 4000 },
+
+            { category: "Оренда", month: "06. Червень", amount: 15000 },
+            { category: "Продукти", month: "06. Червень", amount: 9500 },
+            { category: "Транспорт", month: "06. Червень", amount: 1600 },
+            { category: "Комуналка", month: "06. Червень", amount: 2400 },
+            { category: "Розваги", month: "06. Червень", amount: 3500 }
+        ];
+
+        // 2. Обчислення загальних витрат з даних
+        const totalAmount = familyBudget.reduce((sum, item) => sum + item.amount, 0);
+        const formattedTotal = totalAmount.toLocaleString('uk-UA');
+        document.getElementById('totalCounter').innerText = `Загальні витрати: ${formattedTotal} грн`;
+
+        // 3. Ініціалізація WebDataRocks
+        const pivot = new WebDataRocks({
+            container: "#wdr-component",
+            toolbar: false,
+            report: {
+                dataSource: {
+                    data: familyBudget
+                },
+                slice: {
+                    rows: [
+                        { uniqueName: "category", caption: "Категорії витрат" }
+                    ],
+                    columns: [
+                        { uniqueName: "month", caption: "Місяці" }
+                    ],
+                    measures: [
+                        { 
+                            uniqueName: "amount", 
+                            aggregation: "sum", 
+                            caption: "Сума (грн)",
+                            format: "currencyFormat" 
+                        }
+                    ]
+                },
+                formats: [
+                    {
+                        name: "currencyFormat",
+                        currencySymbol: " грн",
+                        currencySymbolAlign: "right",
+                        thousandsSeparator: " ",
+                        decimalPlaces: 0
+                    }
+                ],
+                options: {
+                    grid: {
+                        type: "classic",
+                        showGrandTotals: "on"
+                    }
+                }
+            }
+        });
+
+        // 4. Інтерактив: Кнопка експорту у HTML
+        document.getElementById('exportBtn').addEventListener('click', () => {
+            pivot.exportTo('html', {
+                filename: "Family_Budget_Report"
+            });
+        });
+    </script>
+</body>
+</html>
